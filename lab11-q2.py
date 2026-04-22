@@ -47,12 +47,6 @@ def solve_send_more_money_csp():
 
     def solve_column(col, carry):
         stats["column_checks"] += 1
-        # Process columns right to left:
-        # 0: D + E = Y + 10*c1
-        # 1: N + R + c1 = E + 10*c2
-        # 2: E + O + c2 = N + 10*c3
-        # 3: S + M + c3 = O + 10*c4
-        # 4: c4 == M
 
         if col == 0:
             return solve_equation("D", "E", "Y", carry, 1)
@@ -68,10 +62,10 @@ def solve_send_more_money_csp():
         return False
 
     def solve_equation(a, b, c, carry_in, next_col):
-        # a + b + carry_in = c + 10 * carry_out
+ 
         vars_needed = [v for v in (a, b, c) if v not in assigned]
 
-        # MRV-style ordering: assign the tightest domain first.
+
         vars_needed.sort(key=lambda x: len(domain(x)))
 
         def assign_needed(i):
