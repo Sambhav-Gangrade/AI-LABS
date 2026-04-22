@@ -31,7 +31,7 @@ def is_valid(district, color, assignment):
         if assignment.get(neighbor) == color:
             return False
     return True
-.0
+
 
 def backtrack(assignment, districts, colors):
 
